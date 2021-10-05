@@ -6,6 +6,8 @@ const { dbConnection } = require("./database/config");
 
 const app = express();
 
+app.use(express.static('public'));
+
 //Configurar CORS
 app.use(cors());
 
