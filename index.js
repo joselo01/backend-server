@@ -6,7 +6,7 @@ const { dbConnection } = require("./database/config");
 
 const app = express();
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 //Configurar CORS
 app.use(cors());
@@ -21,16 +21,6 @@ dbConnection();
 app.use("/api/usuarios", require("./routes/usuarios"));
 app.use("/api/login", require("./routes/auth"));
 
-/* app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log("Servidor corriendo en puerto " + process.env.PORT);
-}); */
-
-connectDB()
-  .then(() => {
-    app.listen(process.env.PORT, () => {
-      console.log("Servidor corriendo en puerto " + process.env.PORT);
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+});
