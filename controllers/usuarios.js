@@ -14,7 +14,7 @@ const getUsuarios = async (req, res) => {
 };
 
 const crearUsuarios = async (req, res = response) => {
-  const { email, password, nombre } = req.body;
+  const { email, password } = req.body;
 
   try {
     const existeEmail = await Usuario.findOne({ email });
@@ -39,7 +39,6 @@ const crearUsuarios = async (req, res = response) => {
     res.json({
       ok: true,
       usuario,
-      nombre,
       token
     });
   } catch (error) {
