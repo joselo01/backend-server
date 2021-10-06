@@ -28,13 +28,14 @@ const login = async (req, res = response) => {
       });
     }
 
-    const token = await generarJWT(usuarioBD.id, usuarioBD.nombre);
+    const token = await generarJWT(usuarioBD.id, usuarioBD.nombre, usuarioBD.role);
 
 
     res.json({
       ok: true,
       uid: usuarioBD.id,
       nombre: usuarioBD.nombre,
+      role: usuarioBD.role,
       token
      
     });

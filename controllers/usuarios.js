@@ -124,15 +124,16 @@ const borrarUsuario = async (req, res = response) => {
 
 const revalidarToken = async (req, res = response ) => {
 
-  const { uid, nombre } = req;
+  const { uid, nombre, role } = req;
 
   // Generar JWT
-  const token = await generarJWT( uid, nombre );
+  const token = await generarJWT( uid, nombre, role );
 
   res.json({
       ok: true,
       uid,
       nombre,
+      role,
       token
   })
 }
