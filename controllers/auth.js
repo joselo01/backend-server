@@ -5,7 +5,7 @@ const Usuario = require("../models/usuarios");
 const { generarJWT } = require("../helpers/jwt");
 
 const login = async (req, res = response) => {
-  const { email, password } = req.body;
+  const { email, password, nombre } = req.body;
 
   try {
     const usuarioBD = await Usuario.findOne({
@@ -33,7 +33,8 @@ const login = async (req, res = response) => {
 
     res.json({
       ok: true,
-      token
+      token,
+      nombre
     });
   } catch (error) {
     console.log(error);
