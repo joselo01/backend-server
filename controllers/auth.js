@@ -5,7 +5,7 @@ const Usuario = require("../models/usuarios");
 const { generarJWT } = require("../helpers/jwt");
 
 const login = async (req, res = response) => {
-  const { email, password, nombre } = req.body;
+  const { email, password } = req.body;
 
   try {
     const usuarioBD = await Usuario.findOne({
@@ -28,13 +28,15 @@ const login = async (req, res = response) => {
       });
     }
 
-    const token = await generarJWT(usuarioBD.id);
+    const token = await generarJWT(usuarioBD.id, usuarioBD.nombre);
 
 
     res.json({
       ok: true,
-      token,
-      nombre
+      uid: usuarioBD.id,
+      name: usuarioBD.nombre,
+      token
+     
     });
   } catch (error) {
     console.log(error);
@@ -45,6 +47,8 @@ const login = async (req, res = response) => {
   }
 };
 
+
+
 module.exports = {
-  login,
+  login
 };
