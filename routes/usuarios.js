@@ -14,9 +14,6 @@ const { validarCampos } = require("../middlewares/validar-campos");
 const { validarJWT } = require("../middlewares/validar-jwt");
 
 const router = Router();
-
-router.get("/", validarJWT, getUsuarios);
-
 router.post(
   "/",
   [
@@ -27,6 +24,8 @@ router.post(
   ],
   crearUsuarios
 );
+
+router.get("/", validarJWT, getUsuarios);
 
 router.put(
   "/:id",
