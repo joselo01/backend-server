@@ -11,7 +11,7 @@ const generarJWT = ( uid, nombre, role ) => {
         }
     
         jwt.sign(payload, process.env.JWT_SECRET, {
-            expiresIn: '12h'
+            expiresIn: '2h'
         }, (err, token) => {
     
             if (err) {

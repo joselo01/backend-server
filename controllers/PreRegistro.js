@@ -1,22 +1,19 @@
 const { response } = require("express");
 const PreRegistro = require("../models/preRegistro");
 
-const getpreUsuario = async (req, res = response) => {
-  const getPreRegister = await PreRegistro.find().populate("user", "name");
-
-  res.json({
-    ok: true,
-    getPreRegister,
-  });
-};
-
 const crearpreUsuario = async (req, res = response) => {
-  const preRegister = new PreRegistro(req.body);
+  let preRegister = new PreRegistro({
+    idFiscal : req.body.idFiscal,
+    pais : req.body.pais,
+    empresa : req.body.empresa,
+    comprador : req.body.comprador,
+    comentario : req.body.comentario,
+    rubro: req.body.rubro
+  });
 
   try {
-    preRegister.user = req.uid;
-
     const preRegisrtroGuardado = await preRegister.save();
+    
 
     res.json({
       ok: true,
@@ -31,7 +28,7 @@ const crearpreUsuario = async (req, res = response) => {
   }
 };
 
-const updatepreUsuario = async (req, res = response) => {
+/* const updatepreUsuario = async (req, res = response) => {
   const preRegisterId = req.params.id;
   const uid = req.uid;
 
@@ -74,9 +71,9 @@ const updatepreUsuario = async (req, res = response) => {
       msg: "Hable con el administrador",
     });
   }
-};
+}; */
 
-const deletepreUsuario = async (req, res = response) => {
+/* const deletepreUsuario = async (req, res = response) => {
   const preRegisterId = req.params.id;
   const uid = req.uid;
 
@@ -108,11 +105,8 @@ const deletepreUsuario = async (req, res = response) => {
       msg: "Hable con el administrador",
     });
   }
-};
+}; */
 
 module.exports = {
-  getpreUsuario,
   crearpreUsuario,
-  updatepreUsuario,
-  deletepreUsuario,
 };
